@@ -1,0 +1,59 @@
+front end code for local host
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Camera Stream</title>
+</head>
+<body>
+    <h1>IP Camera Stream</h1>
+    
+    <!-- Buttons to start/stop the stream -->
+    <button id="go-live-btn">Go Live</button>
+    <button id="stop-live-btn" style="display:none;">Stop Live</button>
+    
+    <br><br>
+    
+    <!-- Video stream display -->
+    <img id="video-feed" alt="Video Stream" width="640" height="480">
+    
+    <!-- Include Socket.IO library -->
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    
+    <!-- Include your custom JavaScript file -->
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+ngrok
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Camera Stream</title>
+</head>
+<body>
+    <h1>IP Camera Stream</h1>
+    
+    <!-- Buttons to start/stop the stream -->
+    <button id="go-live-btn">Go Live</button>
+    <button id="stop-live-btn" style="display:none;">Stop Live</button>
+    
+    <br><br>
+    
+    <!-- Video stream display -->
+    <img id="video-feed" alt="Video Stream" width="640" height="480">
+    
+    <!-- Include Socket.IO library -->
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    
+    <!-- Include your custom JavaScript file -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Camera Stream</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(41, 41, 41); /* Set background to black for the camera feed area */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .left-panel {
+            width: 70%; /* Make the left panel larger for the camera feed */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Ensure background is black */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .right-panel {
+            width: 25%; /* Smaller right panel for snapshots */
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(255, 255, 255, 0.729);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .project-name {
+            display: flex;
+            align-items: center;
+        }
+
+        .project-name label {
+            font-size: 18px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .project-name input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        #video-feed {
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            width: 90%; /* Adjust width for a better fit */
+            height: auto;
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #stop-live-btn {
+            background-color: #dc3545;
+        }
+
+        #stop-live-btn:hover {
+            background-color: #c82333;
+        }
+
+        #snapshot-btn {
+            background-color: #28a745;
+        }
+
+        #snapshot-btn:hover {
+            background-color: #218838;
+        }
+
+        #download-pdf-btn {
+            background-color: #ffc107;
+        }
+
+        #download-pdf-btn:hover {
+            background-color: #e0a800;
+        }
+
+        /* Right panel where snapshots will be rendered */
+        .snapshot-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .snapshot {
+            border: 2px solid #333;
+            border-radius: 5px;
+            width: 100%; /* Make the snapshots fill the available width */
+            height: auto;
+            object-fit: cover;
+        }
+
+        h2 {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel">
+        <div class="header">
+            <div class="project-name">
+                <label for="project-name">Project Name:</label>
+                <input type="text" id="project-name" placeholder="Enter project name">
+            </div>
+            <div class="buttons">
+                <button id="go-live-btn">Go Live</button>
+                <button id="stop-live-btn" style="display:none;">Stop Live</button>
+            </div>
+        </div>
+
+        <!-- Video stream display -->
+        <img id="video-feed" alt="Video Stream">
+        
+        <!-- New Take Snapshot button and Download PDF button -->
+        <div style="margin-top: 20px;">
+            <button id="snapshot-btn">Take Snapshot</button>
+            <button id="download-pdf-btn">Download PDF</button>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <h2>Snapshots</h2>
+        <div class="snapshot-list" id="snapshot-list">
+            <!-- Snapshots will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Include Socket.IO library -->
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <!-- Include your custom JavaScript file -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
